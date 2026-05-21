@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Interview Q&A – CoverMate Insurance Project</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #21262d;
+    --accent: #e6a817;
+    --accent2: #3fb68b;
+    --accent3: #5b8dee;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --tag-bg: #1f2937;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    padding: 0 0 80px;
+  }
+
+  header {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 60%, #1a1f29 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 40px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(230,168,23,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  header .badge {
+    display: inline-block;
+    background: rgba(230,168,23,0.15);
+    border: 1px solid rgba(230,168,23,0.4);
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  header h1 span { color: var(--accent); }
+
+  header p {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 24px 40px;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+  }
+
+  .toc {
+    max-width: 860px;
+    margin: 40px auto 0;
+    padding: 0 24px;
+  }
+  .toc h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .toc-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .toc-item:hover {
+    border-color: var(--accent);
+    color: var(--text);
+    background: rgba(230,168,23,0.05);
+  }
+  .toc-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 0;
+  }
+
+  .section { margin-bottom: 48px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .section-count {
+    margin-left: auto;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    background: var(--tag-bg);
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+
+  .qa-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .qa-card:hover { border-color: rgba(230,168,23,0.3); }
+
+  .qa-q {
+    padding: 18px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .q-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 28px;
+    padding-top: 1px;
+  }
+  .q-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+    line-height: 1.5;
+  }
+  .q-arrow {
+    color: var(--muted);
+    font-size: 12px;
+    transition: transform 0.25s;
+    padding-top: 3px;
+    flex-shrink: 0;
+  }
+  .qa-card.open .q-arrow { transform: rotate(180deg); }
+
+  .qa-a {
+    display: none;
+    padding: 16px 20px 20px 62px;
+    font-size: 14.5px;
+    color: #c9d1d9;
+    line-height: 1.9;
+    border-top: 1px solid var(--border);
+  }
+  .qa-card.open .qa-a { display: block; }
+
+  .qa-a code {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 12.5px;
+    font-family: 'Courier New', monospace;
+    color: var(--accent2);
+  }
+  .qa-a strong { color: #ffffff; font-weight: 600; }
+  .qa-a p { margin-bottom: 10px; }
+  .qa-a p:last-child { margin-bottom: 0; }
+
+  footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+
+  .color-yellow { background: rgba(230,168,23,0.15); color: var(--accent); }
+  .color-green  { background: rgba(63,182,139,0.15); color: var(--accent2); }
+  .color-blue   { background: rgba(91,141,238,0.15); color: var(--accent3); }
+  .color-pink   { background: rgba(240,100,120,0.15); color: #f06478; }
+  .color-purple { background: rgba(163,113,247,0.15); color: #a371f7; }
+  .color-orange { background: rgba(240,150,60,0.15); color: #f0963c; }
+  .color-teal   { background: rgba(56,200,210,0.15); color: #38c8d2; }
+
+  .title-yellow { color: var(--accent); }
+  .title-green  { color: var(--accent2); }
+  .title-blue   { color: var(--accent3); }
+  .title-pink   { color: #f06478; }
+  .title-purple { color: #a371f7; }
+  .title-orange { color: #f0963c; }
+  .title-teal   { color: #38c8d2; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Fresher Interview Preparation</div>
+  <h1>CoverMate <span>Interview Q&amp;A</span></h1>
+  <p>All questions an interviewer can ask about your insurance project — answered in very simple English, easy to understand and easy to say out loud.</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">55+</div><div class="stat-label">Questions</div></div>
+  <div class="stat"><div class="stat-num">7</div><div class="stat-label">Topics</div></div>
+  <div class="stat"><div class="stat-num">360°</div><div class="stat-label">Coverage</div></div>
+  <div class="stat"><div class="stat-num">8 wks</div><div class="stat-label">Project Duration</div></div>
+</div>
+
+<div class="toc">
+  <h2>Topics Covered</h2>
+  <div class="toc-grid">
+    <a href="#s1" class="toc-item"><div class="toc-dot" style="background:var(--accent)"></div>Project Overview</a>
+    <a href="#s2" class="toc-item"><div class="toc-dot" style="background:var(--accent2)"></div>Backend &amp; FastAPI</a>
+    <a href="#s3" class="toc-item"><div class="toc-dot" style="background:var(--accent3)"></div>Database</a>
+    <a href="#s4" class="toc-item"><div class="toc-dot" style="background:#f06478"></div>Login &amp; Security</a>
+    <a href="#s5" class="toc-item"><div class="toc-dot" style="background:#a371f7"></div>Google Drive &amp; Files</a>
+    <a href="#s6" class="toc-item"><div class="toc-dot" style="background:#f0963c"></div>Frontend &amp; React</a>
+    <a href="#s7" class="toc-item"><div class="toc-dot" style="background:#38c8d2"></div>Internship &amp; Soft Skills</a>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- SECTION 1 -->
+<div class="section" id="s1">
+  <div class="section-header">
+    <div class="section-icon color-yellow">📋</div>
+    <div class="section-title title-yellow">Project Overview &amp; General Questions</div>
+    <div class="section-count">12 Questions</div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q1</span><span class="q-text">Can you tell me about your project in simple words?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>My project name is <strong>CoverMate</strong>. It is an insurance web app.</p>
+      <p>In this app, a user can do four main things. First, they can see and compare different insurance policies. Second, they get suggestions on which policy is best for them. Third, they can file a claim when something bad happens — like an accident. Fourth, they can check what is the current status of their claim.</p>
+      <p>There is also an admin side. The admin can see all claims and check if any claim looks fake or suspicious.</p>
+      <p>I built both the frontend — which is what the user sees on screen — and the backend — which is the part that stores data and runs all the logic.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q2</span><span class="q-text">What technologies did you use and why?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p><strong>React.js</strong> — I used this for the frontend. It helps me build web pages fast. Each page is made of small parts called components.</p>
+      <p><strong>FastAPI (Python)</strong> — I used this for the backend. It is easy to write and it automatically creates a page where you can test all APIs. It is also very fast.</p>
+      <p><strong>PostgreSQL</strong> — I used this as the database. It is a very popular database that stores data in tables like Excel sheets.</p>
+      <p><strong>Google Drive API</strong> — The original plan was to use AWS S3 for storing files. But AWS needs a credit card and has a cost. Google Drive is free and works in a similar way. So I used Google Drive to store the documents that users upload with their claims.</p>
+      <p><strong>Celery</strong> — I used this to send emails in the background. When a claim status changes, the user gets an email. Celery does this work quietly in the background so the app does not slow down.</p>
+      <p><strong>JWT</strong> — I used this for login and security. It keeps track of who is logged in.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q3</span><span class="q-text">What are the main parts of your project?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>My project has five main parts:</p>
+      <p><strong>Part 1 — Login and Profile:</strong> User can create an account, log in, and fill in their personal details like age, income, and health condition.</p>
+      <p><strong>Part 2 — Policy List:</strong> User can see all available insurance policies and compare them with each other.</p>
+      <p><strong>Part 3 — Recommendations:</strong> The app looks at the user's age, income, and health. Then it gives a score to each policy and shows the top 5 best policies for that user.</p>
+      <p><strong>Part 4 — Claims:</strong> User can file a claim, upload documents as proof, and check the claim status anytime.</p>
+      <p><strong>Part 5 — Admin and Fraud Check:</strong> The admin can see all claims. The app also checks automatically if a claim looks fake or suspicious.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q4</span><span class="q-text">What was the hardest part of building this project?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>The hardest part was connecting Google Drive to my project for file uploads.</p>
+      <p>Google Drive needs a special login process called OAuth2. The first time the app runs, it opens a browser and asks for Google permission. After that, it saves the login details in a file called <code>token.pickle</code>. Next time, it uses this saved file and does not ask again.</p>
+      <p>Understanding this whole process took me some time. I read the Google documentation carefully and tested it step by step. I also asked my mentor in the daily meeting and they helped me understand it better.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q5</span><span class="q-text">How did you manage your work during the 8 weeks?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>My mentor gave me a week-by-week plan at the start of the internship. Each week had a clear goal. So I always knew what I had to finish.</p>
+      <p>For example, in Week 1 and 2, I had to build the login and policy list. In Week 3 and 4, I had to build the recommendation system. In Week 5 and 6, the claims part. In Week 7 and 8, the fraud check and admin dashboard.</p>
+      <p>Every day we had a short meeting. In that meeting I said: what I finished yesterday, what I will do today, and if I have any problem. This helped me stay on track every day without getting confused.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q6</span><span class="q-text">Is this a full stack project? What did you do in it?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>Yes, this is a full stack project. That means I built both the frontend and the backend.</p>
+      <p>On the frontend side, I made all the web pages using React — like the login page, the policy page, the claims page, and the admin dashboard.</p>
+      <p>On the backend side, I built all the APIs using FastAPI. I also designed the database tables, set up Google Drive for file uploads, set up Celery for email notifications, and added the JWT login system.</p>
+      <p>It was an individual project. But whenever I was stuck, I asked my mentor and my team members for help in the daily meetings.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q7</span><span class="q-text">What is a REST API? Is your project using it?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>REST API is a way for the frontend and backend to talk to each other using the internet.</p>
+      <p>Think of it like this: the frontend is a customer and the backend is a waiter. The customer says "I want to see the menu" — that is a GET request. The customer says "I want to order this dish" — that is a POST request. The customer says "change my order" — that is a PUT request.</p>
+      <p>Yes, my project uses REST API. For example, when a user files a claim, the React page sends a POST request to the FastAPI backend. The backend saves the claim in the database and sends back a reply.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q8</span><span class="q-text">What is CORS and why did you add it?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>CORS means Cross-Origin Resource Sharing. It is a browser safety rule.</p>
+      <p>By default, a browser does not allow one website to talk to a different website. My React app runs on address <code>localhost:3000</code> and my FastAPI backend runs on <code>localhost:8000</code>. These are two different addresses. So the browser blocks them from talking to each other.</p>
+      <p>To fix this, I added CORS settings in FastAPI. I said: "Please allow requests coming from <code>localhost:3000</code>." After this, the frontend and backend can communicate properly.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q9</span><span class="q-text">What is the difference between frontend and backend?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p><strong>Frontend</strong> is what the user sees and uses — the buttons, forms, and pages on the screen. I built this using React.js.</p>
+      <p><strong>Backend</strong> is what runs behind the screen — the logic, the database, and the APIs. The user never sees it directly. I built this using FastAPI and Python.</p>
+      <p>Simple example: when a user clicks "File Claim," the frontend sends the claim details to the backend. The backend saves it in the database, checks for fraud, and sends back a reply. The frontend then shows a success message to the user.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q10</span><span class="q-text">What types of insurance policies does your app support?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>My app supports 5 types of insurance policies:</p>
+      <p><strong>Auto</strong> — for vehicles like cars and bikes.</p>
+      <p><strong>Health</strong> — for hospital bills and medical expenses.</p>
+      <p><strong>Life</strong> — for family protection if something happens to the person.</p>
+      <p><strong>Home</strong> — for house damage or theft.</p>
+      <p><strong>Travel</strong> — for trips, in case of flight cancellation or luggage loss.</p>
+      <p>In the database, these five are stored as fixed allowed values. This makes sure no wrong value can be saved by mistake.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q11</span><span class="q-text">How is your project different from a normal insurance website?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>A normal insurance website just shows a list of policies. My project does more than that.</p>
+      <p>First, it has a <strong>recommendation engine</strong>. It looks at the user's age, income, number of family members, and health condition — and then suggests the best policies for that specific person.</p>
+      <p>Second, it has an <strong>automatic fraud detection system</strong>. When a claim is filed, the system checks if the claim looks suspicious — like if the amount is too high, or if the claim is filed too soon after buying the policy.</p>
+      <p>Third, users get an <strong>email notification</strong> whenever their claim status is updated. This is done automatically in the background.</p>
+      <p>These three things make it smarter than a basic insurance website.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q12</span><span class="q-text">What would you add or improve if you had more time?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>I would improve a few things:</p>
+      <p>First, right now the admin is checked by a hardcoded email id in the code. This is not a good practice. I would add a proper "role" for users — like admin or normal user — stored in the database.</p>
+      <p>Second, I would add a payment option so users can actually pay for a policy online using something like Razorpay.</p>
+      <p>Third, I would move to a proper cloud storage like AWS S3 or Firebase instead of Google Drive, because those are better for production use.</p>
+      <p>Fourth, I would write automated tests for the code so that when I change one thing, I can quickly check nothing else broke.</p>
+      <p>Fifth, I would deploy the app on a real server so anyone can use it from the internet.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section" id="s2">
+  <div class="section-header">
+    <div class="section-icon color-green">⚙️</div>
+    <div class="section-title title-green">Backend — FastAPI, Python &amp; Logic</div>
+    <div class="section-count">12 Questions</div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q13</span><span class="q-text">Why did you choose FastAPI and not Flask or Django?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>All three — FastAPI, Flask, and Django — are Python tools for building backends. But they are different.</p>
+      <p><strong>Django</strong> is very big and has many built-in things. It is good for very large projects. For my project, it felt like too much.</p>
+      <p><strong>Flask</strong> is smaller and simple. But it does not have many automatic features.</p>
+      <p><strong>FastAPI</strong> is also small and simple like Flask, but it has one very useful feature — it automatically creates a testing page at <code>/docs</code> where I can test all my APIs directly in the browser. This saved me a lot of time during development. It is also very fast. That is why I chose FastAPI.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q14</span><span class="q-text">What is a router in FastAPI? Why did you use it?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>A router is a way to keep your code organized by splitting it into separate files.</p>
+      <p>In my project, instead of writing all the APIs in one big file, I made separate files for each feature. For example, <code>claims.py</code> has all claim-related APIs, <code>admin.py</code> has all admin APIs, <code>policies.py</code> has all policy APIs, and so on.</p>
+      <p>Each file has its own router. Then in <code>main.py</code>, I connect all these routers together. This makes the code clean and easy to find. If someone wants to change something in claims, they only go to <code>claims.py</code> — they do not have to search through one big file.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q15</span><span class="q-text">What is Pydantic and why did you use schemas?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>Pydantic is a tool that checks if the data the user sends is correct.</p>
+      <p>For example, when a user files a claim, they must send the claim amount, the type of claim, and the date of the incident. If they forget to send any of these, or if they send a wrong type — like sending a word where a number is expected — Pydantic will catch that error and send back a clear message saying what is wrong.</p>
+      <p>I created these rules in a file called <code>schemas.py</code>. I made one schema for creating a claim, one for signup, and so on. FastAPI automatically uses these schemas to check all incoming data.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q16</span><span class="q-text">What is Celery? Why did you use it for emails?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>Celery is a tool that runs tasks in the background — separately from the main app.</p>
+      <p>Here is the problem it solves. When an admin changes a claim status, the app needs to send an email to the user. Sending an email takes a few seconds. If I send it directly inside the API, the admin has to wait and see nothing happen for a few seconds. That feels slow and bad.</p>
+      <p>With Celery, I just say "please send this email" and the API immediately replies to the admin — done! Celery then sends the email quietly in the background. The admin does not have to wait at all. This makes the app feel fast.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q17</span><span class="q-text">Can you explain how the fraud detection works in your project?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>When a user files a claim, my app automatically runs 4 checks to see if the claim looks fake.</p>
+      <p><strong>Check 1 — Big Amount:</strong> If the claimed amount is more than one lakh rupees, it is marked as high risk. Reason: very large amounts are suspicious.</p>
+      <p><strong>Check 2 — Too Fast:</strong> If the claim is filed within 7 days of buying the policy, it is flagged. Reason: normally people do not have accidents on the very first week of buying insurance.</p>
+      <p><strong>Check 3 — Same Amount Twice:</strong> If the same person already filed a claim for the same amount before, it is flagged. Reason: exact same amounts look copy-pasted.</p>
+      <p><strong>Check 4 — Many Claims at Once:</strong> If the same person files 2 or more claims within just 3 days, it is flagged as high risk.</p>
+      <p>If a high-risk flag is found, the claim status is automatically changed to "under review" so the admin knows to look at it carefully. All these flags are saved in the database.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q18</span><span class="q-text">How does the recommendation engine work?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>The recommendation engine gives a score to each policy based on the user's details. The higher the score, the better the policy is for that user.</p>
+      <p>Here is how the score is calculated:</p>
+      <p>If the policy's cost (premium) is less than 5% of the user's yearly income — the user gets 25 points. This means the policy is affordable for them.</p>
+      <p>If the user is high risk (age above 50, or has 3 or more family members, or has a critical health condition) and the policy has a low deductible — they get 20 points. A low deductible means the user pays less from their own pocket when they make a claim.</p>
+      <p>If the user has 2 or more family members — they get 10 extra points because the policy should cover the whole family.</p>
+      <p>After scoring all policies, the top 5 are shown to the user with a reason like "Affordable based on your income."</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q19</span><span class="q-text">What is SQLAlchemy? How did you use it?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>SQLAlchemy is a Python tool that helps you work with the database using Python code — instead of writing database language (SQL) directly.</p>
+      <p>In my project, I wrote Python classes in <code>models.py</code> to represent database tables. For example, the <code>Claims</code> class represents the claims table. Each column in the table is written as a Python variable.</p>
+      <p>Instead of writing <code>INSERT INTO claims ...</code> in SQL, I just write <code>db.add(new_claim)</code> in Python. SQLAlchemy handles the rest. This is easier to read and also safer — it protects from common attacks like SQL injection.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q20</span><span class="q-text">What is dependency injection in FastAPI? Give a simple example.</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>Dependency injection means FastAPI automatically gives a function what it needs — without you having to write extra code.</p>
+      <p>Example 1 — Database connection: I write <code>db: Session = Depends(get_db)</code> in any API function. FastAPI will automatically open a database connection, pass it to my function, and close it when done. I do not have to open or close the connection myself.</p>
+      <p>Example 2 — Current user: I write <code>current_user = Depends(get_current_user)</code>. FastAPI automatically reads the login token from the request, checks who it belongs to, and gives me the user object. I do not have to do this check in every single API myself.</p>
+      <p>It saves a lot of repeated code and keeps things clean.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q21</span><span class="q-text">What does db.commit() and db.rollback() do?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>Think of the database like a notebook. When you write something, it is first written in pencil (not saved yet).</p>
+      <p><code>db.commit()</code> is like pressing "Save." It makes the changes permanent in the database.</p>
+      <p><code>db.rollback()</code> is like pressing "Undo." It cancels all the changes that were not saved yet.</p>
+      <p>In my file upload code, if something goes wrong during the upload — for example the Google Drive upload fails — I call <code>db.rollback()</code>. This means no broken or incomplete data gets saved in the database. The database stays clean and correct.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q22</span><span class="q-text">How did you send emails in your project?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>I used Python's built-in <code>smtplib</code> library to send emails through Gmail.</p>
+      <p>When the admin changes a claim's status, a Celery background task runs. This task does the following steps:</p>
+      <p>Step 1 — It finds the claim in the database using the claim ID.</p>
+      <p>Step 2 — It finds which user made that claim.</p>
+      <p>Step 3 — It gets the user's email address.</p>
+      <p>Step 4 — It creates an email saying "Your claim status has changed to [new status]."</p>
+      <p>Step 5 — It connects to Gmail's server and sends the email.</p>
+      <p>I used a Gmail App Password — which is a special password just for apps — instead of my real Gmail password. This is a safer way to do it.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q23</span><span class="q-text">What is an error response in FastAPI? How did you handle errors?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>When something goes wrong in my API, I use <code>HTTPException</code> to send back an error message to the frontend.</p>
+      <p>For example, if a user tries to file a claim for a policy that does not belong to them, I send back a 403 error with the message "Invalid user policy." The frontend can then show this message to the user.</p>
+      <p>I used different error codes for different situations. 404 means "not found" — for example when a claim ID does not exist. 403 means "not allowed" — when the user is trying to do something they should not. 500 means something broke on the server side.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q24</span><span class="q-text">What is the difference between GET, POST, and PUT?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>These are the three main ways the frontend sends requests to the backend.</p>
+      <p><strong>GET</strong> — used to read or fetch data. Nothing is changed. Example: "Show me all my claims." The frontend sends a GET request to <code>/claims/</code>.</p>
+      <p><strong>POST</strong> — used to create something new. Example: "I want to file a new claim." The frontend sends a POST request with the claim details.</p>
+      <p><strong>PUT</strong> — used to update something that already exists. Example: "Change this claim's status to approved." The admin sends a PUT request to <code>/claims/{id}/status</code>.</p>
+      <p>In REST API rules, we always use the right method for the right action. We do not use GET for creating data or POST for updating data.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section" id="s3">
+  <div class="section-header">
+    <div class="section-icon color-blue">🗄️</div>
+    <div class="section-title title-blue">Database — PostgreSQL &amp; Tables</div>
+    <div class="section-count">10 Questions</div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q25</span><span class="q-text">How many tables are in your database? Can you explain each one?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>My database has 8 tables. Let me explain each one simply:</p>
+      <p><strong>Users</strong> — stores the user's name, email, password, date of birth, and their risk profile details.</p>
+      <p><strong>Providers</strong> — stores the insurance company details like name and country.</p>
+      <p><strong>Policies</strong> — stores each insurance policy — its type, cost (premium), coverage details, and deductible amount.</p>
+      <p><strong>UserPolicies</strong> — records which user bought which policy, with start date, end date, and status (active or expired).</p>
+      <p><strong>Claims</strong> — stores each claim filed by a user — the amount, date of incident, and current status.</p>
+      <p><strong>ClaimDocuments</strong> — stores the Google Drive link of documents the user uploaded for their claim.</p>
+      <p><strong>Recommendations</strong> — stores the score and reason for each policy that was recommended to each user.</p>
+      <p><strong>FraudFlags</strong> — stores which fraud rule was broken for each suspicious claim.</p>
+      <p><strong>AdminLogs</strong> — records what actions the admin has taken.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q26</span><span class="q-text">What is a foreign key? Give an example from your project.</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>A foreign key is a column in one table that points to a row in another table. It creates a connection between two tables.</p>
+      <p>Simple example: Think of two books. Book 1 is the Students list. Book 2 is the Marks list. Every row in the Marks list has a Student ID that points to a student in the Students list. That Student ID is a foreign key.</p>
+      <p>In my project: The Claims table has a column called <code>user_policy_id</code>. This column points to the UserPolicies table. So every claim is connected to one specific user policy. You cannot file a claim without a valid policy linked to it.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q27</span><span class="q-text">What is JSONB in PostgreSQL? Why did you store some data in it?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>JSONB is a special type of column in PostgreSQL where you can store flexible data that looks like a dictionary or a list. It is like storing a small JSON file inside a database column.</p>
+      <p>I used it in two places:</p>
+      <p><strong>risk_profile in Users table</strong> — each user has different details. One user might have age, income, and dependents. Another might also have a health condition. These fields are not the same for everyone. So I stored it as JSONB instead of making many fixed columns.</p>
+      <p><strong>coverage in Policies table</strong> — different types of policies cover different things. A health policy covers hospital bills. A travel policy covers flight cancellation. The details are different each time. So JSONB is a good fit here.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q28</span><span class="q-text">What is the difference between primary key and unique key?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>Both primary key and unique key make sure no two rows have the same value. But they are a little different.</p>
+      <p><strong>Primary Key</strong> — every table must have exactly one. It is the main way to identify a row. It cannot be empty. In all my tables, the column <code>id</code> is the primary key — it is a number that goes up automatically (1, 2, 3, ...).</p>
+      <p><strong>Unique Key</strong> — it also stops duplicates, but a table can have many unique keys. It can sometimes be empty (NULL). Example: In my Users table, the <code>email</code> column is unique. No two users can have the same email. In my Claims table, the <code>claim_number</code> is unique — no two claims can have the same number.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q29</span><span class="q-text">What is CASCADE delete? Where did you use it?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>CASCADE delete means: when you delete a parent record, all the child records linked to it are automatically deleted too.</p>
+      <p>Simple example: if you delete a student from the Students table, their marks in the Marks table should also be deleted automatically. Otherwise, you will have marks records with no student — which is confusing and useless data.</p>
+      <p>In my project, I used this in the Claims table. The <code>user_policy_id</code> column has <code>ondelete="CASCADE"</code>. So if a user policy is deleted, all claims linked to that policy are also automatically deleted. I used it in several other places too — like deleting claim documents when a claim is deleted.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q30</span><span class="q-text">What is an ORM? Why is it better than writing SQL directly?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>ORM stands for Object Relational Mapping. It is a tool that lets you use your programming language — in my case Python — to talk to the database. You do not have to write SQL commands directly.</p>
+      <p>I used SQLAlchemy as my ORM.</p>
+      <p>Why is it better? Three reasons:</p>
+      <p>First, it is easier to read. Python code is cleaner than SQL mixed into Python strings.</p>
+      <p>Second, it is safer. When you write SQL as a plain string and put user input inside it, hackers can change the query. ORM protects from this type of attack automatically.</p>
+      <p>Third, it works with different databases. If I want to switch from PostgreSQL to MySQL, I change very little code — the ORM handles the difference.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q31</span><span class="q-text">What is a JOIN? Did you use it in your project?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>A JOIN is a way to combine data from two tables at the same time when they are connected.</p>
+      <p>Simple example: if you want to find a student's marks along with their name, you JOIN the Students table and the Marks table using the student ID.</p>
+      <p>Yes, I used it in my project. To get all claims for the current user, I write:</p>
+      <p><code>db.query(Claims).join(UserPolicies).filter(UserPolicies.user_id == current_user.id)</code></p>
+      <p>The Claims table does not have the user_id directly. It only has user_policy_id. So I JOIN the UserPolicies table to get the user_id from there. Then I filter to show only the current user's claims.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q32</span><span class="q-text">Why did you use server_default=func.now() for timestamps?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>This means: when a new row is saved in the database, the database server automatically fills in the current date and time — I do not have to send it from Python.</p>
+      <p>Why is this better than using Python's time? Because the database server's clock is more accurate and consistent. If your app runs on multiple servers, their clocks might be slightly different. Using the database server's own clock makes sure all records have a consistent, correct timestamp.</p>
+      <p>I used this for the <code>created_at</code> column in tables like Claims, ClaimDocuments, and FraudFlags.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q33</span><span class="q-text">Why did you use NUMERIC instead of a normal number type for money?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>For money, we need exact decimal values. For example, a premium might be ₹5,250.75 — not ₹5,250 or ₹5,251.</p>
+      <p>If I use a regular float type (like <code>float</code> in Python), the computer sometimes stores it as ₹5,250.7499999 because of how computers handle decimal numbers. This small difference can cause big problems when you are adding up money for thousands of users.</p>
+      <p>NUMERIC(12, 2) stores the exact number — up to 12 digits total and exactly 2 decimal places. This is the standard and safe way to store money values in any database.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q34</span><span class="q-text">What is the Recommendations table? How is it used?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>The Recommendations table stores the result of the recommendation engine for each user.</p>
+      <p>Every time a user asks for recommendations, my code goes through all policies, calculates a score for each one, and saves the score and reason in this table — linked to the user's ID and the policy's ID.</p>
+      <p>Before saving new recommendations, I first delete the old ones. This keeps the data fresh and updated every time.</p>
+      <p>The top 5 policies by score are then sent back to the user's screen. The admin can also later check what was recommended to each user by looking at this table.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section" id="s4">
+  <div class="section-header">
+    <div class="section-icon color-pink">🔐</div>
+    <div class="section-title title-pink">Login &amp; Security — JWT &amp; Passwords</div>
+    <div class="section-count">8 Questions</div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q35</span><span class="q-text">What is JWT? Explain in simple words how it works in your project.</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>JWT stands for JSON Web Token. It is a way to verify who the user is — without storing their login information on the server every time.</p>
+      <p>Think of it like an entry pass to a concert. When you buy a ticket, you get a pass. At the gate, they check the pass — they do not need to call the ticket office every time. The pass itself proves you are allowed in.</p>
+      <p>In my project it works like this:</p>
+      <p>Step 1 — The user enters their email and password in the login page.</p>
+      <p>Step 2 — The backend checks if the email and password are correct. If yes, it creates a JWT token and sends it to the frontend.</p>
+      <p>Step 3 — The frontend saves this token. Every time it sends a request to the backend, it includes this token.</p>
+      <p>Step 4 — The backend reads the token, checks it is valid, and knows who the user is — without checking the database again.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q36</span><span class="q-text">What are the three parts of a JWT token?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>A JWT token looks like this: <code>xxxxx.yyyyy.zzzzz</code> — three parts separated by dots.</p>
+      <p><strong>Part 1 — Header:</strong> Tells what algorithm is used to create the token. In my project I used HS256.</p>
+      <p><strong>Part 2 — Payload:</strong> Contains the user's information — like their email and when the token expires. This part is readable by anyone who has the token, but it cannot be changed without being caught.</p>
+      <p><strong>Part 3 — Signature:</strong> This is the security part. It is created by combining part 1 and part 2 with a secret key that only my server knows. If someone tries to change anything in the token, the signature will not match and the token becomes invalid.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q37</span><span class="q-text">How did you save passwords safely? Why is it important?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>I never saved the real password in the database. Instead, I saved a hashed version of the password.</p>
+      <p>Hashing means the password goes through a process that converts it into a long random-looking string. For example, the password "hello123" becomes something like "x9q$2mK#r...". This cannot be reversed — you cannot get back "hello123" from that string.</p>
+      <p>I used a library called bcrypt for this. It is a very safe and popular way to hash passwords.</p>
+      <p>Why is this important? If someone hacks the database, they only see the hashed strings — not the real passwords. Even I cannot read the users' passwords. When a user logs in, I hash what they typed and compare it with the stored hash. If they match, the login is allowed.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q38</span><span class="q-text">When does the JWT token expire? What happens after that?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>In my project, the JWT token expires after <strong>30 minutes</strong>. I set this in the code as <code>ACCESS_TOKEN_EXPIRE_MINUTES = 30</code>.</p>
+      <p>After 30 minutes, if the user tries to do anything — like view their claims — the backend will reject the request. It will send back a 401 error which means "not logged in."</p>
+      <p>At that point, the user needs to log in again to get a new token.</p>
+      <p>In a real production app, we would also add something called a refresh token. This is a second token that lasts longer (like 7 days) and can be used to get a new access token automatically — so the user does not have to keep logging in again and again. I did not build this part yet, but I know it is the next step.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q39</span><span class="q-text">What is OAuth2? How did you use it in this project?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>OAuth2 is a way to allow one app to access another app on your behalf — without sharing your password.</p>
+      <p>I used OAuth2 in two places in my project:</p>
+      <p><strong>For user login:</strong> FastAPI has a built-in tool called <code>OAuth2PasswordBearer</code>. It reads the token from the request header and passes it to my code so I can check who is logged in.</p>
+      <p><strong>For Google Drive:</strong> To upload files to Google Drive, my app needs permission from Google. OAuth2 is how Google gives that permission. The first time, a browser window opens and asks the user to allow access. After the user says yes, Google gives a credential that my app saves to a file and uses for future uploads — without asking again every time.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q40</span><span class="q-text">How did you handle admin access in your project?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>I made a special function called <code>admin_only</code> in the admin file. This function checks: is the currently logged-in user's email the same as the admin's email?</p>
+      <p>If yes — the request is allowed. If no — it sends back a 403 error saying "Admin access required."</p>
+      <p>All admin routes — like seeing all claims or exporting the CSV — use this <code>admin_only</code> check. So a normal user cannot access those pages even if they try.</p>
+      <p>I know this method is simple and not ideal for a big app. In a real app, I would store a "role" column in the database — like "admin" or "user" — and check that instead of checking a hardcoded email.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q41</span><span class="q-text">What is the difference between authentication and authorization?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>These two words sound similar but mean different things.</p>
+      <p><strong>Authentication</strong> means checking who you are. Example: when you enter your email and password to log in, the system checks if you are a registered user. This is authentication. After this you get a JWT token.</p>
+      <p><strong>Authorization</strong> means checking what you are allowed to do. Example: even though you are logged in, you cannot open the admin dashboard. Only the admin user is allowed to do that. This check is authorization.</p>
+      <p>Easy way to remember: Authentication = "Are you who you say you are?" Authorization = "Are you allowed to do this?"</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q42</span><span class="q-text">Are there any security problems in your project? Can you be honest about it?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>Yes, I can honestly say there are a few things that need improvement for a real production app.</p>
+      <p>First, the secret key used for JWT is written directly in the code as a simple word. In a real app, this should be a long random value stored in a separate environment file, not in the code.</p>
+      <p>Second, the Gmail password used for sending emails is also written directly in the code. This is not safe if the code is shared publicly. It should also be in a separate environment file.</p>
+      <p>Third, the admin is identified by a hardcoded email. In a real app, there should be a proper role system in the database.</p>
+      <p>Fourth, uploaded files on Google Drive are made public — anyone with the link can see them. For sensitive insurance documents, this is a problem. A better approach would be to keep them private and generate temporary links.</p>
+      <p>I know these issues because I was building and learning at the same time. These are good lessons for my next project.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section" id="s5">
+  <div class="section-header">
+    <div class="section-icon color-purple">☁️</div>
+    <div class="section-title title-purple">Google Drive API &amp; File Uploads</div>
+    <div class="section-count">6 Questions</div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q43</span><span class="q-text">Why did you use Google Drive instead of AWS S3?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>The original plan in the project document mentioned using AWS S3 for storing uploaded files. But AWS S3 needs a credit card and has costs, even though there is a free tier. For an internship project, it was not practical.</p>
+      <p>Google Drive API is completely free with a Google account and gives 15 GB of storage. The main goal of this module was to learn how to upload files to a cloud storage and store the link in the database. Google Drive achieves that goal perfectly.</p>
+      <p>The logic is almost the same — upload the file, get a shareable link, save the link in the database. I also learned how Google's API and OAuth2 permission system works, which is a valuable skill.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q44</span><span class="q-text">Can you explain step by step what happens when a user uploads a document?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>Here is what happens step by step when a user uploads a claim document:</p>
+      <p><strong>Step 1:</strong> The user selects a file on the React page and clicks the upload button.</p>
+      <p><strong>Step 2:</strong> The React page sends this file to the backend at the address <code>/claims/{claim_id}/upload</code>.</p>
+      <p><strong>Step 3:</strong> FastAPI receives the file. It first checks if this claim belongs to the current user. If not, it returns an error.</p>
+      <p><strong>Step 4:</strong> The file is saved as a temporary file on the server — for example <code>temp_document.pdf</code>.</p>
+      <p><strong>Step 5:</strong> My code calls the Google Drive function. It uploads the temp file to a specific Google Drive folder.</p>
+      <p><strong>Step 6:</strong> Google Drive gives back a file ID. My code makes the file public and creates a shareable link like <code>https://drive.google.com/file/d/...</code>.</p>
+      <p><strong>Step 7:</strong> This link is saved in the <code>ClaimDocuments</code> table in the database.</p>
+      <p><strong>Step 8:</strong> The temp file on the server is deleted — always, even if something went wrong.</p>
+      <p><strong>Step 9:</strong> The link is sent back to the React page as the response.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q45</span><span class="q-text">What is token.pickle? Why is it used?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p><code>token.pickle</code> is a file that stores the Google login credentials after the first time the app connects to Google.</p>
+      <p>The first time my app runs and tries to use Google Drive, it opens a browser window and asks for permission — "Do you allow this app to access your Google Drive?" After you click Allow, Google gives a set of credentials (like a login pass). My code saves these credentials to a file called <code>token.pickle</code>.</p>
+      <p>The next time the app runs, it reads from this file instead of opening the browser again. If the credentials have expired, it automatically refreshes them in the background without any browser popup.</p>
+      <p>This makes the app easier to use — the user only has to click Allow once.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q46</span><span class="q-text">What is the finally block in your upload code? Why is it important?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>The <code>finally</code> block is a part of the code that runs no matter what — whether the upload worked perfectly or something went wrong.</p>
+      <p>In my upload code, after the file is received from the user, I save it temporarily on the server. I need to do this because Google Drive's upload function needs a file path — it cannot read directly from memory.</p>
+      <p>After the upload to Google Drive is done — or if it fails — I always want to delete this temporary file. If I do not delete it, the server keeps collecting these files and runs out of space over time.</p>
+      <p>So in the <code>finally</code> block I check: if the temp file exists, delete it. This cleanup always happens — success or failure. That is the purpose of <code>finally</code>.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q47</span><span class="q-text">What Google Drive permission (scope) did you use? What does it mean?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>I used the scope <code>https://www.googleapis.com/auth/drive.file</code>.</p>
+      <p>In simple words, this scope means: my app can only see and manage the files that it uploaded itself. It cannot see or touch any other files in the user's personal Google Drive.</p>
+      <p>This is important for safety. If I had used a full access scope, my app would be able to read all the user's personal files — emails, photos, documents — which is a big privacy risk.</p>
+      <p>By using the smallest permission that my app needs, I follow a rule called "least privilege" — only ask for what you actually need, nothing more.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q48</span><span class="q-text">What does resumable=True mean in your file upload code?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>When I upload a file to Google Drive, I use <code>MediaFileUpload(file_path, resumable=True)</code>.</p>
+      <p>Resumable means: if the internet connection breaks in the middle of an upload, the upload can continue from where it stopped — instead of starting from zero again.</p>
+      <p>For example, if a user uploads a large PDF file and the internet cuts off at 60%, a resumable upload will continue from 60% when the connection comes back. Without resumable, it would have to start all over from 0%.</p>
+      <p>For claim documents — which can be scanned PDFs and are sometimes large — this makes the upload more reliable.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6 -->
+<div class="section" id="s6">
+  <div class="section-header">
+    <div class="section-icon color-orange">⚛️</div>
+    <div class="section-title title-orange">Frontend — React.js &amp; UI Pages</div>
+    <div class="section-count">7 Questions</div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q49</span><span class="q-text">What pages did you build in React? Tell me about each one.</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>I built 9 pages in React:</p>
+      <p><strong>Login page</strong> — where users enter their email and password to log in.</p>
+      <p><strong>Signup page</strong> — where new users create their account.</p>
+      <p><strong>Policies page</strong> — shows all available insurance policies. User can browse and filter them.</p>
+      <p><strong>Compare page</strong> — lets the user pick two or more policies and see them side by side to compare details.</p>
+      <p><strong>Risk Profile page</strong> — a form where the user fills in their age, income, number of family members, and health condition. This data is used for recommendations.</p>
+      <p><strong>Recommendations page</strong> — shows the top 5 policies recommended for that specific user based on their risk profile.</p>
+      <p><strong>Upload Claim page</strong> — a form where the user can upload documents related to their claim.</p>
+      <p><strong>My Claims page</strong> — shows a list of all claims filed by the user with their current status.</p>
+      <p><strong>Admin Dashboard</strong> — only for admin. Shows total users, claims, fraud flags, and lets the admin change claim status or export a CSV file.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q50</span><span class="q-text">What is React Router? How did you use it?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>React Router is a tool that helps the user move between pages in a React app without reloading the whole browser every time.</p>
+      <p>Normally, when you click a link on a website, the browser downloads a completely new page. This takes time and the screen flashes.</p>
+      <p>With React Router, all the pages are already loaded in the background. When you click a link, React just shows the correct page component — no full reload. This makes the app feel very fast and smooth, like a mobile app.</p>
+      <p>In my <code>App.js</code>, I defined all the routes — like <code>/login</code> shows the Login page, <code>/policies</code> shows the Policies page, <code>/claims</code> shows the My Claims page, and so on.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q51</span><span class="q-text">How does the frontend send requests to the backend?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>The frontend uses HTTP requests to talk to the backend. I used the browser's built-in <code>fetch</code> function for this.</p>
+      <p>For example, when a user opens the My Claims page, React calls <code>fetch("http://localhost:8000/claims/")</code>. But before sending, it adds the JWT token to the request header like a key card — so the backend knows who is asking.</p>
+      <p>The backend receives the request, finds the claims for that user in the database, and sends back the list. React then shows that list on the screen.</p>
+      <p>This is how every page works — the frontend asks, the backend answers, the frontend displays.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q52</span><span class="q-text">What is the difference between state and props in React?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>Both state and props store data in React, but they work differently.</p>
+      <p><strong>State</strong> is data that belongs to a component and can change. When state changes, the screen updates automatically. Example: when the My Claims page loads, I fetch the list of claims from the backend and save it in state. When the list arrives, the screen shows the claims without needing a page refresh.</p>
+      <p><strong>Props</strong> is data that a parent component gives to a child component. The child cannot change it — it can only read it. Example: if I have a ClaimCard component, I pass the claim details to it as props. The card just displays whatever it receives.</p>
+      <p>Simple way to remember: State is your own data. Props is data given to you by someone else.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q53</span><span class="q-text">What is useEffect in React? Where did you use it?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p><code>useEffect</code> is a React hook — a special function — that runs some code when the page first loads or when something specific changes.</p>
+      <p>I used it to fetch data from the backend when a page opens.</p>
+      <p>For example, in the Policies page, I wrote a <code>useEffect</code> that calls the FastAPI <code>GET /policies</code> API as soon as the page loads. The result (list of policies) is saved in state. React then shows all the policies on the screen automatically.</p>
+      <p>Without <code>useEffect</code>, the page would load empty and nothing would appear — because React would not know when to go and fetch the data.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q54</span><span class="q-text">What does the Admin Dashboard show? How does it work?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>The Admin Dashboard is a special page that only the admin can see.</p>
+      <p>When the admin opens it, the page automatically calls the backend and loads:</p>
+      <p><strong>Summary numbers</strong> — total number of users, total claims, total policies sold, total fraud flags found, total premium collected, and total amount claimed.</p>
+      <p><strong>All claims list</strong> — each claim is shown with its documents and any fraud flags it has.</p>
+      <p><strong>Status update</strong> — the admin can click on a claim and change its status to "approved," "rejected," or "paid." When they do, the user gets an email automatically through Celery.</p>
+      <p><strong>Export button</strong> — the admin can download all claims as a CSV file (like an Excel sheet) to keep a record or analyze offline.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q55</span><span class="q-text">What is a component in React? Explain simply.</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>A component is a small, separate piece of a web page. Think of a web page like a house made of Lego blocks. Each block is a component.</p>
+      <p>For example, the Login page in my project is one component. The Policies page is another component. Inside the Policies page, there might be a smaller component for each policy card.</p>
+      <p>Each component has its own code, its own data (state), and its own look (HTML and CSS). We build big pages by putting smaller components together.</p>
+      <p>The benefit is reuse. If I build a PolicyCard component, I can use it on the Policies page, the Compare page, and the Recommendations page — without writing the same code three times.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7 -->
+<div class="section" id="s7">
+  <div class="section-header">
+    <div class="section-icon color-teal">🤝</div>
+    <div class="section-title title-teal">Internship Experience &amp; Soft Skills</div>
+    <div class="section-count">6 Questions</div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q56</span><span class="q-text">Can you describe your daily routine during the internship?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>Every day we had a short team meeting. In that meeting, each person said three things:</p>
+      <p>First — what task I finished the day before.</p>
+      <p>Second — what I plan to do today.</p>
+      <p>Third — if I am stuck on any problem.</p>
+      <p>This type of daily meeting is called a stand-up meeting. It is how real software teams work. After the meeting, I would start coding based on the week's goal. If I got stuck, I would try to solve it myself first. If I could not solve it, I would ask my mentor or team members in the next meeting or directly in a message.</p>
+      <p>This routine helped me stay organized and make consistent progress every day.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q57</span><span class="q-text">How did you handle it when you were completely stuck on something?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>Whenever I was stuck — for example, when I could not get the Google Drive upload to work — I followed a simple process.</p>
+      <p>Step 1 — I tried to solve it myself. I read the official documentation and searched for the error message online.</p>
+      <p>Step 2 — If I still could not fix it after some time, I brought it up in the daily meeting. I clearly explained what I was trying to do, what error I was getting, and what I had already tried.</p>
+      <p>Step 3 — My mentor or team member would suggest a different approach or point me to the right resource.</p>
+      <p>I learned that asking for help is not a weakness — it is actually a skill. Asking in a clear way, with details of what you already tried, is what makes a good team member.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q58</span><span class="q-text">What did you learn from this internship experience?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>I learned a lot of things — both technical and non-technical.</p>
+      <p>On the technical side, I learned how to build a complete web app from scratch. I learned how frontend and backend work together. I learned how to design a database, how to use APIs, how to connect Google Drive, how to send emails in the background, and how JWT login works.</p>
+      <p>On the non-technical side, I learned how to break a big project into small weekly tasks. I learned how to communicate in team meetings — saying clearly what I did, what I will do, and where I need help. I learned how to manage my own time without a teacher telling me every day what to do.</p>
+      <p>Most importantly, I learned that it is okay to not know everything. The important thing is to keep learning and not give up when something is difficult.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q59</span><span class="q-text">This was an individual project. How did you manage everything alone?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>Having a clear week-by-week plan helped a lot. My mentor gave me a plan at the start that said exactly what to finish each week. So I never felt lost about what to do next.</p>
+      <p>I focused on one module at a time. First I finished login. Then I finished policies. Then recommendations. Then claims. Then fraud and admin. I did not try to do everything at once.</p>
+      <p>The daily meetings also helped — even though it was an individual project, I could ask the team when I had doubts. I was never completely alone.</p>
+      <p>Doing it alone also gave me the full picture of how the entire app works — from the database all the way to what the user sees on screen. That is a strong learning experience that team projects do not always give.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q60</span><span class="q-text">What are the areas in your project that can be made better?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>I can think of five clear areas to improve:</p>
+      <p><strong>Security:</strong> Secret keys and passwords in the code should be moved to a separate environment file. Admin check should use a role column in the database instead of a hardcoded email.</p>
+      <p><strong>File privacy:</strong> Right now claim documents uploaded to Google Drive are public. They should be kept private with controlled access.</p>
+      <p><strong>Testing:</strong> I should write automated tests so that when I change one part of the code, I can quickly check that nothing else broke.</p>
+      <p><strong>Deployment:</strong> The app is only running on my local computer. It should be put on a real server on the internet so anyone can use it.</p>
+      <p><strong>Smarter recommendations:</strong> My scoring system uses simple rules I wrote manually. A machine learning model could learn from real user data and give much better suggestions over time.</p>
+    </div>
+  </div>
+
+  <div class="qa-card" onclick="toggle(this)">
+    <div class="qa-q"><span class="q-num">Q61</span><span class="q-text">Why should we hire you based on this project?</span><span class="q-arrow">▼</span></div>
+    <div class="qa-a">
+      <p>This project shows that I can build a complete, working app on my own — not just a small exercise.</p>
+      <p>I handled the frontend, the backend, the database, file uploads, email notifications, fraud logic, and an admin panel — all by myself. I faced real problems along the way and I solved them.</p>
+      <p>I also understand why I made each decision — not just how. I can explain why I used JSONB for the risk profile, why I used NUMERIC for money, why I added CASCADE delete, why I separated the routers, and so on.</p>
+      <p>I am a fresher, so I do not know everything. But I have shown that I can learn fast, work independently, communicate with a team, and deliver a working product. I am willing to work hard and improve every day. I believe that attitude matters more than how much you already know at the start.</p>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<footer>
+  Prepared from your CoverMate Insurance Project — Infosys Springboard Internship &nbsp;·&nbsp; Click any question to see the answer &nbsp;·&nbsp; All the best! 🎯
+</footer>
+
+<script>
+  function toggle(card) {
+    card.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
